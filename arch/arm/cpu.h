@@ -205,6 +205,9 @@ typedef struct CPUState {
         /* msplim/psplim are armv8-m specific */
         uint32_t msplim;
         uint32_t psplim;
+        /* CFSR is actually exposed via the NVIC. However we hold it here to
+           allow for faults to be tracked. */
+        uint32_t cfsr;
     } v7m;
 #endif
 

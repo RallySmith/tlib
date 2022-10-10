@@ -17,6 +17,8 @@ void tlib_set_interrupt_vector_base(uint32_t address);
 uint32_t tlib_get_interrupt_vector_base(void);
 
 uint32_t tlib_get_xpsr(void);
+uint32_t tlib_get_cfsr(void);
+
 #endif
 
 #endif

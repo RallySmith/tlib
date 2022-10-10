@@ -144,4 +144,22 @@ uint32_t tlib_get_xpsr()
 
 EXC_INT_0(uint32_t, tlib_get_xpsr)
 
+uint32_t tlib_get_cfsr(void)
+{
+    // Track NVIC.CFSR with the CPU so we can provide fault information
+    return cpu->v7m.cfsr;
+}
+
+EXC_INT_0(uint32_t, tlib_get_cfsr)
+
+void tlib_set_cfsr(uint32_t value)
+{
+    value &= 0x030FBFBB; // do not change reserved bits
+    // Clear corresponding bits
+    cpu->v7m.cfsr &= ~value;
+}
+
+EXC_VOID_1(tlib_set_cfsr, uint32_t, value)
+
+
 #endif

@@ -8909,6 +8909,9 @@ static int disas_thumb2_insn(CPUState *env, DisasContext *s, uint16_t insn_hw1)
                 goto illegal_op;
             }
             if (disas_coproc_insn(env, s, insn)) {
+#ifdef TARGET_PROTO_ARM_M
+                env->v7m.cfsr |= (1 << 19); // CFSR.NOCP
+#endif // TARGET_PROTO_ARM_M
                 goto illegal_op;
             }
         }
